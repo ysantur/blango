@@ -1,6 +1,8 @@
 from django import template
 from django.contrib.auth import get_user_model
 from blog.models import Post
+from django.utils.html import format_html
+
 
 user_model = get_user_model()
 register = template.Library()
@@ -26,3 +28,21 @@ def author_details(author, current_user):
 def recent_posts(post):
     posts = Post.objects.exclude(pk=post.pk)[:3]
     return {"title": "Son Postlar", "posts": posts}
+
+
+@register.simple_tag
+def row(extra_classes=""):
+    return format_html('<div class="row {}">', extra_classes)
+
+@register.simple_tag
+def endrow(extra_classes=""):
+    return "</div>"
+
+
+@register.simple_tag
+def col(extra_classes=""):
+    return format_html('<div class="col {}">', extra_classes)
+
+@register.simple_tag
+def endcol():
+    return format_html("</div>")
