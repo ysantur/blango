@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load blog_extras %}
+{% load blog_extras cache %}
+
 
 {% block content %}
 <h2>{{ post.title }}</h2>
@@ -8,17 +10,20 @@
         {% include "blog/post-byline.html" %}
     </div>
 </div>
+
 <div class="row">
     <div class="col">
         {{ post.content|safe }}
-    </div>
+    </div> 
 </div>
 
 <div>
-    {% include "blog/post-comments.html" %}
+    {% include "blog/post-comments.html" %} 
 </div>
-
-<div>
-    {% recent_posts post %}
-</div>
+    {% cache 100 recent_posts %}
+         {% recent_posts post %}
+    {% endcache %}
 {% endblock %}
+
+
+

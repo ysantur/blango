@@ -1,4 +1,3 @@
-{% load blog_extras %}
 {% load blog_extras crispy_forms_tags %}
 
 <h4>Comments</h4>
@@ -8,11 +7,13 @@
         <h5>Posted by {{ comment.creator }} at {{ comment.created_at|date:"M, d Y h:i" }}</h5>
     {% endcol %}
 {% endrow %}
+
 {% row "border-bottom" %}
     {% col %}
         <p>{{ comment.content }}</p>
     {% endcol %}
 {% endrow %}
+
 {% empty %}
     {% row "border-top border-bottom" %}
         {% col %}
@@ -20,6 +21,9 @@
         {% endcol %}
     {% endrow %}
 {% endfor %}
+
+
+
 {% if request.user.is_active %}
 {% row "mt-4" %}
     {% col %}
@@ -29,9 +33,6 @@
             <!-- {{ comment_form | crispy }} -->
 
             {%  crispy comment_form %}
-
-            <p>
-            </p>
         </form>
     {% endcol %}
 {% endrow %}
