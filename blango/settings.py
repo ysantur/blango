@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'debug_toolbar',
+    'blango_auth',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,7 @@ CACHES = {
         "LOCATION": "unique-snowflake",
     }
 }
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ACCOUNT_ACTIVATION_DAYS = 7
+
