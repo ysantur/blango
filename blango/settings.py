@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +156,13 @@ CACHES = {
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_ACTIVATION_DAYS = 7
 
+REST_FRAMEWORK = {
+"DEFAULT_AUTHENTICATION_CLASSES": [
+"rest_framework.authentication.BasicAuthentication",
+"rest_framework.authentication.SessionAuthentication",
+"rest_framework.authentication.TokenAuthentication",
+],
+"DEFAULT_PERMISSION_CLASSES": [
+#"rest_framework.permissions.IsAuthenticatedOrReadOnly"
+],
+}
