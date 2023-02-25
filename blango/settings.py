@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
     'rest_framework.authtoken',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -165,4 +166,25 @@ REST_FRAMEWORK = {
 "DEFAULT_PERMISSION_CLASSES": [
 #"rest_framework.permissions.IsAuthenticatedOrReadOnly"
 ],
+}
+
+"""
+SWAGGER_SETTINGS = {
+"SECURITY_DEFINITIONS": {
+"Token": {"type": "apiKey", "name": "Authorization","in": "header"},"Basic": {"type": "basic"},
+}
+}
+"""
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+    'PERSIST_AUTH': True,
+    'USE_SESSION_AUTH': False,
+    'DEFAULT_API_URL': 'http://127.0.0.1/',
 }
