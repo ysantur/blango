@@ -62,6 +62,19 @@ urlpatterns += [
 
 
 
+from rest_framework.routers import DefaultRouter
+from blog.api.v1.views import PostList, PostDetail, UserDetail,TagViewSet
+router = DefaultRouter()
+router.register("tags", TagViewSet)
+urlpatterns += [
+path("auth/", include("rest_framework.urls")),
+# ... other patterns omitted
+path("", include(router.urls)),
+]
+
+
+
+
 # requests.get("http://127.0.0.1:8000/api/v1/posts/", headers={"Authorization": "Tokene205bdd823797df036e32e9d913b197f7538d6ae"})
 # requests.get("http://127.0.0.1:8000/api/v1/postlar",auth=HTTPBasicAuth("root", "1a")) 
 
